@@ -17,7 +17,7 @@ geom_path(mapping = NULL, data = NULL, stat = "identity", position = "identity",
 plot_cities <- plot_troops + geom_path(aes(size = survivors, color = direction, group = division), lineend = "round", linejoin = "round")
 plot_cities_labels <- plot_cities + geom_text(aes(label = city), size = 4.5, data = Cities) + geom_point(data = Cities)
 v <- c(1, 2, 3) * 10^5
-plot_march <- plot_cities_labels + scale_size("Survivors", range = c(1, 25), breaks = v, labels = comma(v)) +
+plot_march <- plot_cities_labels + scale_size("Survivors", range = c(1, 22), breaks = v, labels = comma(v)) +
   scale_color_manual("Direction", values = c("#DFC17E", "grey50")) +
   xlab("Longitude") + ylab("Latitude") + ggtitle("Napoleon's march to Russia")
 plot_march
@@ -30,4 +30,4 @@ plot_temp <- ggplot(Temp, aes(long, temp)) +
   coord_cartesian(xlim = c(24, 38)) + 
   theme_bw()
 
-grid.arrange(plot_march, plot_temp, nrow=2, heights=c(3,1))
+grid.arrange(plot_march, plot_temp, nrow=2, heights=c(3,2))
