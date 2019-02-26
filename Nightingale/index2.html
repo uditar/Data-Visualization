@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Nightingale's Rose</title>
+		<link rel="stylesheet" type="text/css" href="E:/Trinity/Data Visualization/Nightingale/style.css">
+		<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+		<script type="text/javascript" src="E:/Trinity/Data Visualization/Nightingale/script2.js"></script>
+		
+	</head>
+	
+	
+	<body>	
+		
+		<script type="text/javascript">
+			var nightingale = Chart.rose(),
+				format = d3.time.format('%m/%Y'),
+				causes = ['disease', 'wounds', 'other'],
+				labels = ['Jan 1855', 'Feb 1855', 'Mar 1855', 'Apr ', 'May ', 'Jun  ', 'Jul ', 'Aug 1854', 'Sept ', 'Oct ', 'Nov ', 'Dec '];
+           
+		     
+			d3.select('body').append('h2')
+				.attr('class', 'margin')
+
+			d3.json( 'data.json', function( data ) {
+			
+				data.forEach( function(item) { 
+					item.date = format.parse(item.date);
+					//for every month
+					item.label = labels[item.date.getMonth()];
+					//annual Mortality rate per 1000 calculated as D/S soldiers died each month
+					// therefore for 12 months 12*D/S and to scale to 1000 12000*D/S
+					// for each factor of death 12000*D/S*cause or factor 
+					//D/S can be calculated as number of deaths in by single cause/size of army
+					item.disease = item.disease * 12000 / item.army_size;
+					item.wounds  = item.wounds  * 12000 / item.army_size;
+					item.other   = item.other   * 12000 / item.army_size;
+				} );  
+
+
+
+				var dataset1 = data.slice(0,12); //March 1854-April 1855
+				
+				figure = d3.select( 'body' )
+					.append( 'figure' );
+				
+			
+				var max = d3.max(data, function(item){ return d3.max([item.disease,item.wounds,item.other])});
+            
+				nightingale.legend( causes )
+					.width( 400 )
+					.height( 500 )
+					.domain( [0, Math.sqrt(max*12 / Math.PI)] )
+					.angle( function(item) { return item.date.getMonth(); } )
+					.area( function(item, i) { return [item.disease, item.wounds, item.other]; } );			
+                
+				
+				figure.datum( dataset1 )
+					.call( nightingale );
+			
+			});	
+
+			
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+
+body {
+	font-family: 'Cabin', sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	width: 100%;
+	min-height: 100%;
+}
+
+figure {
+	position: relative;
+	float: right;
+	width: 50%;
+	min-width: 400px;
+	margin-top: -120px;
+}
+
+.title, .subtitle, .label, .legend {
+	text-transform: uppercase;
+}
+
+.title {
+	font-size: 18px;
+	width: 500px;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 550px;
+}
+.margin {
+	margin-top: 80px;
+}
+.subtitle {
+	font-size: 15px;
+	width: 50%;
+	min-width: 400px;
+	margin-top: 16px;
+	text-align: center;
+	font-style: 'Courier New', Courier, monospace;
+}
+
+	.subtitle.left {
+		float: left;
+		
+	}
+
+	.subtitle.right {
+		float: right;
+	}
+
+
+ .label {
+	font-size: 10px;
+} 
+
+.disease {
+	fill: rgb(162, 195, 233);
+}
+
+.other {
+	fill: rgb(117, 117, 117);
+}
+
+.wounds {
+	fill: rgb(240, 197, 231);
+}
+
+.legend {
+	width: 450px;
+	height: 50px;
+	padding: 0 50px;
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	top: 1px;
+	text-align: center;
+	font-size: 0.75em;
+
+}
